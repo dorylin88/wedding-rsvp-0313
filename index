@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vincent & Dory Wedding RSVP</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --pink: #f4c7cb;
+  --pink-light: #fdf0f2;
+  --pink-mid: #e8a5ad;
+  --green: #c8dcd4;
+  --green-light: #e8f4ef;
+  --green-dark: #7ba394;
+  --white: #ffffff;
+  --text: #3d4a44;
+  --text-light: #6b7c74;
+  --accent: #d4a5ab;
+  --border: #e0d8d9;
+}
+
+body {
+  font-family: 'Noto Sans TC', sans-serif;
+  background: var(--white);
+  color: var(--text);
+  min-height: 100vh;
+  font-weight: 300;
+}
+
+/* Navigation */
+.nav-bar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: flex-end;
+  gap: 24px;
+  padding: 16px 30px;
+  background: rgba(255,255,255,0.9);
+  backdrop-filter: blur(8px);
+  z-index: 100;
+  border-bottom: 1px solid var(--border);
+}
+.nav-bar a {
+  font-size: 0.72em;
+  letter-spacing: 2px;
+  text-decoration: none;
+  color: var(--text-light);
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.nav-bar a:hover {
+  color: var(--pink-mid);
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  padding: 100px 20px 60px;
+  background: linear-gradient(180deg, var(--pink-light) 0%, var(--green-light) 50%, var(--white) 100%);
+}
+.hero .subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1em;
+  letter-spacing: 6px;
+  color: var(--pink-mid);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3em;
+  font-weight: 300;
+  color: var(--text);
+  letter-spacing: 4px;
+  margin-bottom: 20px;
+}
+.hero .divider {
+  width: 60px;
+  height: 1px;
+  background: var(--green-dark);
+  margin: 0 auto 20px;
+}
+.hero .countdown {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.85em;
+  letter-spacing: 2px;
+  color: var(--text-light);
+  margin-bottom: 24px;
+}
+.hero .countdown .cd-num {
+  display: inline-block;
+  font-size: 1.4em;
+  font-weight: 500;
+  color: var(--pink-mid);
+  min-width: 28px;
+  animation: pulse 1s ease-in-out infinite alternate;
+}
+@keyframes pulse {
+  0% { opacity: 0.7; transform: scale(1); }
+  100% { opacity: 1; transform: scale(1.05); }
+}
+.hero .intro {
+  max-width: 480px;
+  margin: 0 auto;
+  font-size: 0.92em;
+  line-height: 2;
+  color: var(--text-light);
+}
+
+/* Info Section */
+.info-bar {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  max-width: 700px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+.info-block {
+  flex: 1;
+  min-width: 200px;
+  text-align: center;
+  padding: 20px 16px;
+  border: 1.5px solid var(--pink);
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+.info-block:first-child { border-radius: 12px 0 0 12px; }
+.info-block:last-child { border-radius: 0 12px 12px 0; }
+#details, #rsvp, #hero {
+  scroll-margin-top: 60px;
+}
+.info-block .info-icon {
+  font-size: 1.4em;
+  margin-bottom: 8px;
+  color: var(--pink-mid);
+  font-style: normal;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 36px;
+  width: 36px;
+}
+.info-block .info-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.8em;
+  letter-spacing: 3px;
+  color: var(--pink-mid);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.info-block .info-value {
+  font-size: 0.88em;
+  color: var(--text-light);
+  line-height: 1.6;
+  font-family: 'Cormorant Garamond', 'Noto Sans TC', serif;
+  letter-spacing: 1px;
+}
+
+/* Timeline list */
+.timeline-list {
+  text-align: left;
+}
+.tl-entry {
+  margin-bottom: 10px;
+}
+.tl-entry:last-child {
+  margin-bottom: 0;
+}
+.tl-entry .tl-time {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15em;
+  font-weight: 400;
+  letter-spacing: 3px;
+  color: var(--text);
+}
+.tl-entry .tl-desc {
+  font-size: 0.85em;
+  color: var(--text-light);
+  margin-top: 2px;
+  letter-spacing: 1px;
+}
+.info-block .time-line {
+  display: block;
+  text-align: left;
+  padding-left: 20px;
+}
+
+/* Timeline */
+.time-block {
+  padding: 24px 20px;
+}
+.timeline {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+  padding-left: 10px;
+}
+.tl-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.tl-icon {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--pink-mid);
+  flex-shrink: 0;
+}
+.tl-text {
+  text-align: left;
+}
+.tl-time {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1em;
+  font-weight: 500;
+  color: var(--text);
+  letter-spacing: 1px;
+}
+.tl-label {
+  font-size: 0.8em;
+  color: var(--text-light);
+  margin-top: 1px;
+}
+.tl-dot-line {
+  width: 1px;
+  height: 16px;
+  margin-left: 18px;
+  border-left: 1px dashed var(--pink);
+}
+
+/* Form Section */
+.form-section {
+  max-width: 100%;
+  padding: 50px 24px 60px;
+  background: linear-gradient(180deg, var(--white) 0%, #f5f0ee 100%);
+}
+.form-section > div {
+  max-width: 580px;
+  margin: 0 auto;
+}
+.form-card {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 50px 40px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.06), 0 2px 10px rgba(0,0,0,0.03);
+  border: 1px solid var(--pink);
+  background: linear-gradient(160deg, #fff 0%, var(--pink-light) 30%, #fff 50%, var(--green-light) 80%, #fff 100%);
+}
+.section-title {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.section-title h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6em;
+  font-weight: 400;
+  color: var(--text);
+  letter-spacing: 2px;
+  margin-bottom: 6px;
+}
+.section-title .section-sub {
+  font-size: 0.78em;
+  letter-spacing: 4px;
+  color: var(--green-dark);
+  text-transform: uppercase;
+}
+
+.form-group {
+  margin-bottom: 28px;
+}
+.form-group .field-label {
+  display: block;
+  font-size: 0.88em;
+  font-weight: 400;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.form-group .field-hint {
+  font-size: 0.78em;
+  color: var(--text-light);
+  margin-bottom: 10px;
+}
+.form-group .required {
+  color: #e88a9a;
+  margin-left: 3px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group input[type="number"],
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.92em;
+  background: var(--white);
+  color: var(--text);
+  transition: border-color 0.3s, box-shadow 0.3s;
+  font-family: inherit;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--green-dark);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(123,163,148,0.1);
+}
+.form-group textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+
+.radio-group {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 6px;
+}
+.radio-group label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 300;
+  cursor: pointer;
+  background: var(--white);
+  padding: 11px 18px;
+  border-radius: 30px;
+  border: 1px solid var(--border);
+  transition: all 0.25s;
+  font-size: 0.88em;
+}
+.radio-group label:hover {
+  border-color: var(--accent);
+  background: var(--green-light);
+}
+.radio-group input[type="radio"] {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 1.5px solid var(--border);
+  border-radius: 50%;
+  transition: all 0.2s;
+  position: relative;
+}
+.radio-group input[type="radio"]:checked {
+  border-color: var(--green-dark);
+  background: var(--green-dark);
+}
+.radio-group input[type="radio"]:checked::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 8px;
+  height: 8px;
+  background: white;
+  border-radius: 50%;
+}
+.radio-group label:has(input:checked) {
+  border-color: var(--green-dark);
+  background: var(--green-light);
+}
+.radio-group label:has(input:checked) span {
+  color: var(--green-dark);
+  font-weight: 400;
+}
+
+.submit-btn {
+  display: block;
+  width: 100%;
+  padding: 16px;
+  background: var(--green-dark);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95em;
+  font-weight: 400;
+  letter-spacing: 2px;
+  cursor: pointer;
+  margin-top: 36px;
+  transition: all 0.3s;
+}
+.submit-btn:hover {
+  background: #6a9484;
+  box-shadow: 0 4px 20px rgba(123,163,148,0.3);
+}
+.submit-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.success-msg {
+  display: none;
+  text-align: center;
+  padding: 80px 20px;
+}
+.success-msg h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2em;
+  font-weight: 300;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+.success-msg p {
+  color: var(--text-light);
+  line-height: 1.8;
+}
+
+.conditional { display: none; }
+.conditional.show { display: block; }
+
+a.zip-link {
+  color: var(--green-dark);
+  text-decoration: underline;
+}
+a.map-link {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 0.85em;
+  color: var(--pink-mid);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+a.map-link:hover {
+  color: var(--green-dark);
+  text-decoration: underline;
+}
+
+/* Guest cards */
+.guest-card {
+  background: var(--green-light);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 14px;
+}
+.guest-card .guest-title {
+  font-size: 0.82em;
+  font-weight: 500;
+  color: var(--green-dark);
+  margin-bottom: 14px;
+  letter-spacing: 1px;
+}
+.guest-card .guest-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+.guest-card .guest-row:last-child { margin-bottom: 0; }
+.guest-card .row-label {
+  font-size: 0.8em;
+  color: var(--text-light);
+  min-width: 42px;
+}
+.guest-card input[type="text"] {
+  flex: 1;
+  min-width: 120px;
+  padding: 9px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.88em;
+  background: var(--white);
+  font-family: inherit;
+}
+.guest-card input[type="text"]:focus {
+  border-color: var(--green-dark);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(123,163,148,0.1);
+}
+.guest-card .mini-radio-group {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.guest-card .mini-radio-group label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.78em;
+  cursor: pointer;
+  background: var(--white);
+  padding: 7px 12px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  transition: all 0.2s;
+}
+.guest-card .mini-radio-group label:hover {
+  border-color: var(--accent);
+}
+.guest-card .mini-radio-group input[type="radio"] {
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border: 1.5px solid var(--border);
+  border-radius: 50%;
+  transition: all 0.2s;
+  position: relative;
+}
+.guest-card .mini-radio-group input[type="radio"]:checked {
+  border-color: var(--green-dark);
+  background: var(--green-dark);
+}
+.guest-card .mini-radio-group input[type="radio"]:checked::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 6px;
+  height: 6px;
+  background: white;
+  border-radius: 50%;
+}
+.guest-card .mini-radio-group label:has(input:checked) {
+  border-color: var(--green-dark);
+  background: var(--green-light);
+}
+.guest-card .mini-radio-group label:has(input:checked) span {
+  color: var(--green-dark);
+  font-weight: 400;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 30px 20px;
+  font-size: 0.75em;
+  color: var(--text-light);
+  letter-spacing: 1px;
+  border-top: 1px solid var(--border);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .hero h1 { font-size: 2.2em; }
+  .nav-bar { gap: 14px; padding: 12px 16px; }
+  .nav-bar a { font-size: 0.65em; letter-spacing: 1px; }
+  .info-bar { flex-direction: column; max-width: 320px; }
+  .info-block { border-radius: 0 !important; }
+  .info-block:first-child { border-radius: 12px 12px 0 0 !important; }
+  .info-block:last-child { border-radius: 0 0 12px 12px !important; }
+  .form-card { padding: 35px 24px; border-radius: 16px; }
+  .radio-group { gap: 8px; }
+  .radio-group label { padding: 9px 14px; font-size: 0.84em; }
+}
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="nav-bar">
+  <a href="#hero">關於我們</a>
+  <a href="#details">婚禮詳情</a>
+  <a href="#rsvp">出席回函</a>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="hero">
+  <div class="subtitle">We're Getting Married</div>
+  <h1>Vincent & Dory</h1>
+  <div class="divider"></div>
+  <div class="countdown" id="countdown"></div>
+  <div class="intro">
+    親愛的家人朋友們：<br>
+    我們的婚禮就定在 2027/3/13 (六)<br>
+    誠摯邀請你與我們共同見證分享這一幸福時刻。<br><br>
+    為了能早早安排所有細節，讓大家玩得開心，我們準備了問券。<br>
+    若剛好有空，期待與你共度這段溫馨而難忘的時光<br>
+    若有事不能到場，您的祝福就是我們最好的禮物
+  </div>
+</section>
+
+<!-- Info -->
+<section id="details" style="max-width:700px;margin:0 auto 50px;padding:0 20px;">
+  <div class="section-title" style="margin-bottom:20px;">
+    <h2 style="text-transform:uppercase;letter-spacing:4px;font-size:1.2em;">Wedding Details</h2>
+  </div>
+  <div class="info-bar">
+  <div class="info-block">
+    <div class="info-icon">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="8" y1="2" x2="8" y2="5"/><line x1="16" y1="2" x2="16" y2="5"/></svg>
+    </div>
+    <div class="info-title">Date</div>
+    <div class="info-value">2027/03/13 (六)</div>
+  </div>
+  <div class="info-block">
+    <div class="info-icon">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12,6 12,12 16,14"/></svg>
+    </div>
+    <div class="info-title">Timeline</div>
+    <div class="info-value timeline-list">
+      <div class="tl-entry"><div class="tl-time">10:30</div><div class="tl-desc">迎賓簽到 Candy Bar</div></div>
+      <div class="tl-entry"><div class="tl-time">11:00</div><div class="tl-desc">戶外證婚</div></div>
+      <div class="tl-entry"><div class="tl-time">12:00</div><div class="tl-desc">室內午宴</div></div>
+    </div>
+  </div>
+  <div class="info-block">
+    <div class="info-icon">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8 2 5 5.5 5 10c0 5.5 7 12 7 12s7-6.5 7-12c0-4.5-3-8-7-8z"/><circle cx="12" cy="10" r="2.5"/></svg>
+    </div>
+    <div class="info-title">Location</div>
+    <div class="info-value">The畔 cafe&amp;dining<br>桃園市龍潭區金龍路8巷22號<br><a class="map-link" href="https://maps.google.com/?q=桃園市龍潭區金龍路8巷22號" target="_blank">📌 Google Map</a></div>
+  </div>
+</div>
+</section>
+
+<!-- Form -->
+<section class="form-section" id="rsvp">
+  <div id="formSection">
+    <div class="form-card">
+    <div class="section-title">
+      <h2>出席回函</h2>
+      <div class="section-sub">Awaiting Your Reply</div>
+    </div>
+
+    <form id="rsvpForm" onsubmit="submitForm(event)">
+
+      <div class="form-group">
+        <div class="field-label">姓名 <span class="required">*</span></div>
+        <input type="text" id="name" required placeholder="請輸入您的姓名">
+      </div>
+
+      <div class="form-group">
+        <div class="field-label">關係 <span class="required">*</span></div>
+        <div class="radio-group">
+          <label><input type="radio" name="side" value="男方親友" required><span>男方親友</span></label>
+          <label><input type="radio" name="side" value="女方親友"><span>女方親友</span></label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="field-label">是否會出席婚宴 <span class="required">*</span></div>
+        <div class="field-hint">無法前來的朋友請不要有壓力，我們會感受到你們祝福的。</div>
+        <div class="radio-group">
+          <label><input type="radio" name="attend" value="出席" required onchange="toggleFields()"><span>出席，絕對到場！</span></label>
+          <label><input type="radio" name="attend" value="無法出席" onchange="toggleFields()"><span>無法出席，祝你們幸福美滿！</span></label>
+          <label><input type="radio" name="attend" value="尚未確定" onchange="toggleFields()"><span>尚未確定</span></label>
+        </div>
+      </div>
+
+      <div id="attendFields" class="conditional">
+
+        <div class="form-group">
+          <div class="field-label">參加場次 <span class="required">*</span></div>
+          <div class="radio-group">
+            <label><input type="radio" name="session" value="戶外證婚+室內午宴" checked><span>戶外證婚 + 室內午宴</span></label>
+            <label><input type="radio" name="session" value="只有室內午宴"><span>只有室內午宴</span></label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="field-label">出席人數（含本人）<span class="required">*</span></div>
+          <div class="field-hint">填寫人數後，下方會出現每位賓客的主餐與飲品選擇</div>
+          <select id="guests" onchange="renderGuestCards()">
+            <option value="1">1 人</option>
+            <option value="2">2 人</option>
+            <option value="3">3 人</option>
+            <option value="4">4 人</option>
+            <option value="5">5 人</option>
+          </select>
+        </div>
+
+        <div id="guestCardsContainer"></div>
+
+        <div class="form-group">
+          <div class="field-label">兒童椅需求</div>
+          <select id="kidChair">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </div>
+
+      </div>
+
+      <div class="form-group">
+        <div class="field-label">請選擇您要紙本還是電子喜帖 <span class="required">*</span></div>
+        <div class="radio-group">
+          <label><input type="radio" name="invitationType" value="電子喜帖" required onchange="toggleInvitationFields()"><span>電子喜帖</span></label>
+          <label><input type="radio" name="invitationType" value="紙本喜帖" onchange="toggleInvitationFields()"><span>紙本喜帖</span></label>
+        </div>
+      </div>
+
+      <div id="emailFields" class="conditional">
+        <div class="form-group">
+          <div class="field-label">電子喜帖寄送 Email <span class="required">*</span></div>
+          <input type="email" id="email" placeholder="請填入電子信箱">
+        </div>
+      </div>
+
+      <div id="addressFields" class="conditional">
+        <div class="form-group">
+          <div class="field-label">紙本喜帖寄送郵遞區號 <span class="required">*</span></div>
+          <div class="field-hint">需輸入 3+2 郵遞區號 <a class="zip-link" href="https://www.post.gov.tw/post/internet/Postal/index.jsp?ID=208" target="_blank">(查詢)</a></div>
+          <input type="text" id="zipCode" placeholder="例如：32544">
+        </div>
+        <div class="form-group">
+          <div class="field-label">紙本喜帖寄送地址 <span class="required">*</span></div>
+          <input type="text" id="address" placeholder="請填入完整地址">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="field-label">您的聯絡電話</div>
+        <input type="tel" id="phone" placeholder="選填">
+      </div>
+
+      <div class="form-group">
+        <div class="field-label">有什麼話想和我們說嗎 💬</div>
+        <div class="field-hint">如果你有一些祝福的話不好意思當面說，就在這邊留言給我們吧！</div>
+        <textarea id="message" placeholder="給新人的祝福"></textarea>
+      </div>
+
+      <button type="submit" class="submit-btn" id="submitBtn">確認送出 SUBMIT</button>
+    </form>
+    </div><!-- .form-card -->
+  </div>
+
+  <div id="successSection" class="success-msg">
+    <h2>Thank You</h2>
+    <p>感謝您的回覆<br>期待與您共享這美好的一天<br><br>— Vincent & Dory —</p>
+  </div>
+</section>
+
+<div class="footer">
+  VINCENT & DORY — 2027.03.13
+</div>
+
+<script>
+const APPS_SCRIPT_URL = 'YOUR_APPS_SCRIPT_WEB_APP_URL';
+
+function toggleFields() {
+  const attend = document.querySelector('input[name="attend"]:checked');
+  const fields = document.getElementById('attendFields');
+  if (attend && attend.value === '出席') {
+    fields.classList.add('show');
+    renderGuestCards();
+  } else {
+    fields.classList.remove('show');
+  }
+}
+
+function toggleInvitationFields() {
+  const type = document.querySelector('input[name="invitationType"]:checked');
+  const emailFields = document.getElementById('emailFields');
+  const addressFields = document.getElementById('addressFields');
+  emailFields.classList.remove('show');
+  addressFields.classList.remove('show');
+  if (type) {
+    if (type.value === '電子喜帖') emailFields.classList.add('show');
+    else if (type.value === '紙本喜帖') addressFields.classList.add('show');
+  }
+}
+
+function renderGuestCards() {
+  const count = parseInt(document.getElementById('guests').value) || 1;
+  const container = document.getElementById('guestCardsContainer');
+  let html = '';
+  for (let i = 0; i < count; i++) {
+    const label = i === 0 ? '賓客 1（本人）' : `賓客 ${i + 1}`;
+    html += `
+      <div class="guest-card">
+        <div class="guest-title">${label}</div>
+        <div class="guest-row">
+          <span class="row-label">姓名</span>
+          <input type="text" id="guestName_${i}" placeholder="請輸入姓名" required>
+        </div>
+        <div class="guest-row">
+          <span class="row-label">主餐</span>
+          <div class="mini-radio-group">
+            <label><input type="radio" name="guestMeal_${i}" value="手工慢燉番茄肉丸義大利麵" checked><span>番茄肉丸義大利麵</span></label>
+            <label><input type="radio" name="guestMeal_${i}" value="松露奶油雞腿燉飯"><span>松露奶油雞腿燉飯</span></label>
+            <label><input type="radio" name="guestMeal_${i}" value="素食餐點"><span>素食餐點</span></label>
+          </div>
+        </div>
+        <div class="guest-row">
+          <span class="row-label">飲品</span>
+          <div class="mini-radio-group">
+            <label><input type="radio" name="guestDrink_${i}" value="酒精飲料" checked><span>酒精飲料</span></label>
+            <label><input type="radio" name="guestDrink_${i}" value="無酒精飲料"><span>無酒精飲料</span></label>
+            <label><input type="radio" name="guestDrink_${i}" value="都可以"><span>都可以</span></label>
+          </div>
+        </div>
+      </div>`;
+  }
+  container.innerHTML = html;
+}
+
+function collectGuestData() {
+  const count = parseInt(document.getElementById('guests').value) || 1;
+  const guests = [];
+  for (let i = 0; i < count; i++) {
+    const name = document.getElementById(`guestName_${i}`).value.trim();
+    const meal = document.querySelector(`input[name="guestMeal_${i}"]:checked`);
+    const drink = document.querySelector(`input[name="guestDrink_${i}"]:checked`);
+    guests.push({
+      name: name,
+      meal: meal ? meal.value : '',
+      drink: drink ? drink.value : ''
+    });
+  }
+  return guests;
+}
+
+async function submitForm(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = '送出中...';
+
+  const attend = document.querySelector('input[name="attend"]:checked').value;
+  const side = document.querySelector('input[name="side"]:checked').value;
+  const invitationType = document.querySelector('input[name="invitationType"]:checked');
+  const session = document.querySelector('input[name="session"]:checked');
+
+  const data = {
+    name: document.getElementById('name').value.trim(),
+    side: side,
+    attend: attend,
+    session: attend === '出席' && session ? session.value : '',
+    guests: attend === '出席' ? (document.getElementById('guests').value || '1') : '0',
+    guestDetails: attend === '出席' ? collectGuestData() : [],
+    kidChair: attend === '出席' ? (document.getElementById('kidChair').value || '0') : '0',
+    invitationType: invitationType ? invitationType.value : '',
+    email: document.getElementById('email').value.trim(),
+    zipCode: document.getElementById('zipCode').value.trim(),
+    address: document.getElementById('address').value.trim(),
+    phone: document.getElementById('phone').value.trim(),
+    message: document.getElementById('message').value.trim()
+  };
+
+  try {
+    await fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    document.getElementById('formSection').style.display = 'none';
+    document.getElementById('successSection').style.display = 'block';
+  } catch (err) {
+    alert('送出失敗，請稍後再試或聯繫新人 🙏');
+    btn.disabled = false;
+    btn.textContent = '確認送出 SUBMIT';
+  }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  renderGuestCards();
+
+  // Countdown
+  function updateCountdown() {
+    const wedding = new Date('2027-03-13T11:00:00+08:00');
+    const now = new Date();
+    const diff = wedding - now;
+    if (diff <= 0) {
+      document.getElementById('countdown').textContent = '🎊 Today is the day!';
+      return;
+    }
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const secs = Math.floor((diff % (1000 * 60)) / 1000);
+    document.getElementById('countdown').innerHTML =
+      `<span class="cd-num">${days}</span> days &nbsp; <span class="cd-num">${hours}</span> hrs &nbsp; <span class="cd-num">${mins}</span> min &nbsp; <span class="cd-num">${secs}</span> sec`;
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+});
+</script>
+
+</body>
+</html>
