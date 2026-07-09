@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wedding RSVP</title>
+<title>Wedding RSVP 💍</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
@@ -15,7 +15,7 @@ body {
 }
 
 .container {
-  max-width: 600px;
+  max-width: 620px;
   margin: 0 auto;
   background: rgba(255,255,255,0.95);
   border-radius: 20px;
@@ -31,38 +31,64 @@ body {
 .header h1 {
   font-size: 1.8em;
   color: #b8860b;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 }
-.header p {
+.header .intro {
   color: #a08030;
   font-size: 0.95em;
-  line-height: 1.6;
+  line-height: 1.8;
+  margin-bottom: 20px;
 }
-.header .date-info {
-  margin-top: 12px;
-  background: linear-gradient(135deg, #fff8e1, #ffe082);
-  display: inline-block;
-  padding: 8px 20px;
-  border-radius: 20px;
+
+.info-section {
+  background: linear-gradient(135deg, #fffde7, #fff8e1);
+  border: 1px solid #ffe082;
+  border-radius: 14px;
+  padding: 20px 24px;
+  margin-bottom: 10px;
+  text-align: left;
+}
+.info-section .info-item {
+  margin-bottom: 12px;
+}
+.info-section .info-item:last-child {
+  margin-bottom: 0;
+}
+.info-section .info-label {
   font-weight: bold;
   color: #8d6e00;
+  font-size: 0.95em;
+}
+.info-section .info-value {
+  color: #5d4200;
+  font-size: 0.9em;
+  margin-top: 2px;
 }
 
 .form-group {
-  margin-bottom: 20px;
+  margin-bottom: 22px;
 }
-.form-group label {
+.form-group > label,
+.form-group > .field-label {
   display: block;
   font-weight: bold;
   color: #7a6020;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
   font-size: 0.95em;
 }
-.form-group label .required {
+.form-group .field-hint {
+  font-size: 0.82em;
+  color: #b0a060;
+  margin-bottom: 8px;
+  font-weight: normal;
+}
+.form-group .required {
   color: #e57373;
   margin-left: 2px;
 }
 .form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
 .form-group input[type="number"],
 .form-group select,
 .form-group textarea {
@@ -89,7 +115,7 @@ body {
 
 .radio-group {
   display: flex;
-  gap: 15px;
+  gap: 12px;
   flex-wrap: wrap;
   margin-top: 6px;
 }
@@ -100,10 +126,11 @@ body {
   font-weight: normal;
   cursor: pointer;
   background: #fffef8;
-  padding: 8px 16px;
+  padding: 10px 16px;
   border-radius: 20px;
   border: 1.5px solid #ffe082;
   transition: all 0.2s;
+  font-size: 0.92em;
 }
 .radio-group label:hover {
   background: #fff8e1;
@@ -128,7 +155,7 @@ body {
   font-size: 1.1em;
   font-weight: bold;
   cursor: pointer;
-  margin-top: 25px;
+  margin-top: 28px;
   box-shadow: 0 4px 15px rgba(255,179,0,0.3);
   transition: all 0.3s;
 }
@@ -136,28 +163,16 @@ body {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(255,179,0,0.4);
 }
-.submit-btn:active {
-  transform: translateY(0);
-}
-.submit-btn:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-  transform: none;
-}
+.submit-btn:active { transform: translateY(0); }
+.submit-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 
 .success-msg {
   display: none;
   text-align: center;
   padding: 40px 20px;
 }
-.success-msg h2 {
-  color: #b8860b;
-  margin-bottom: 10px;
-}
-.success-msg p {
-  color: #a08030;
-  line-height: 1.6;
-}
+.success-msg h2 { color: #b8860b; margin-bottom: 10px; }
+.success-msg p { color: #a08030; line-height: 1.6; }
 
 .note {
   text-align: center;
@@ -168,6 +183,12 @@ body {
 
 .conditional { display: none; }
 .conditional.show { display: block; }
+
+a.zip-link {
+  color: #1a73e8;
+  text-decoration: underline;
+  font-size: 0.85em;
+}
 </style>
 </head>
 <body>
@@ -176,16 +197,40 @@ body {
   <div id="formSection">
     <div class="header">
       <h1>🌸 We're Getting Married 🌿</h1>
-      <p>Vincent &amp; Dory 誠摯邀請您參加我們的婚禮<br>請填寫以下表單，讓我們為您安排最好的座位 💛</p>
-      <div class="date-info">📅 2027 年 3 月 ｜ 📍 The畔</div>
+      <div class="intro">
+        親愛的家人朋友們：<br>
+        我們的婚禮就定在 2027/3/13 (六)<br>
+        誠摯邀請你與我們共同見證分享這一幸福時刻。<br><br>
+        為了能早早安排所有細節，讓大家玩得開心，我們準備了問券。<br>
+        若剛好有空，期待與你共度這段溫馨而難忘的時光<br>
+        若有事不能到場，您的祝福就是我們最好的禮物 💛
+      </div>
+
+      <div class="info-section">
+        <div class="info-item">
+          <div class="info-label">📅 日期 Date</div>
+          <div class="info-value">2027/03/13 (六)</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">🕐 時間 Time</div>
+          <div class="info-value">10:30 迎賓 Candy Bar ｜ 11:00 戶外證婚 ｜ 12:00 室內午宴</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">📍 地點 Location</div>
+          <div class="info-value">The畔 cafe&amp;dining<br>桃園市龍潭區金龍路8巷22號</div>
+        </div>
+      </div>
     </div>
 
     <form id="rsvpForm" onsubmit="submitForm(event)">
+
+      <!-- 1. 姓名 -->
       <div class="form-group">
         <label>姓名 <span class="required">*</span></label>
         <input type="text" id="name" required placeholder="請輸入您的姓名">
       </div>
 
+      <!-- 2. 關係 -->
       <div class="form-group">
         <label>關係 <span class="required">*</span></label>
         <div class="radio-group">
@@ -194,49 +239,105 @@ body {
         </div>
       </div>
 
+      <!-- 3. 是否出席 -->
       <div class="form-group">
-        <label>是否出席 <span class="required">*</span></label>
+        <div class="field-label">是否會出席婚宴 <span class="required">*</span></div>
+        <div class="field-hint">無法前來的朋友請不要有壓力，我們會感受到你們祝福的。</div>
         <div class="radio-group">
-          <label><input type="radio" name="attend" value="出席" required onchange="toggleAttendFields()"><span>🎉 開心出席</span></label>
-          <label><input type="radio" name="attend" value="不克出席" onchange="toggleAttendFields()"><span>😢 不克出席</span></label>
+          <label><input type="radio" name="attend" value="出席" required onchange="toggleFields()"><span>出席，絕對到場！</span></label>
+          <label><input type="radio" name="attend" value="無法出席" onchange="toggleFields()"><span>無法出席，祝你們幸福美滿！</span></label>
+          <label><input type="radio" name="attend" value="尚未確定" onchange="toggleFields()"><span>尚未確定</span></label>
         </div>
       </div>
 
+      <!-- 出席才顯示 -->
       <div id="attendFields" class="conditional">
+
+        <!-- 4. 主餐調查 -->
+        <div class="form-group">
+          <div class="field-label">主餐調查 🍝</div>
+          <div class="field-hint">當日主餐為位上形式，請每位賓客義大利麵/燉飯擇一</div>
+          <div class="radio-group">
+            <label><input type="radio" name="meal" value="手工慢燉番茄肉丸義大利麵" checked><span>手工慢燉番茄肉丸義大利麵</span></label>
+            <label><input type="radio" name="meal" value="松露奶油雞腿燉飯"><span>松露奶油雞腿燉飯</span></label>
+            <label><input type="radio" name="meal" value="素食餐點"><span>素食餐點</span></label>
+          </div>
+        </div>
+
+        <!-- 5. 飲品偏好 -->
+        <div class="form-group">
+          <div class="field-label">飲品偏好 🍷</div>
+          <div class="field-hint">請告知我們當天是否有喝酒需求，我們也會提供無酒精飲料喔 ^^</div>
+          <div class="radio-group">
+            <label><input type="radio" name="drink" value="酒精飲料" checked><span>酒精飲料</span></label>
+            <label><input type="radio" name="drink" value="無酒精飲料"><span>無酒精飲料</span></label>
+            <label><input type="radio" name="drink" value="都可以"><span>都可以</span></label>
+          </div>
+        </div>
+
+        <!-- 6. 攜伴人數 -->
         <div class="form-group">
           <label>攜伴人數（含本人）<span class="required">*</span></label>
           <input type="number" id="guests" min="1" max="10" value="1">
         </div>
 
-        <div class="form-group">
-          <label>素食需求</label>
-          <div class="radio-group">
-            <label><input type="radio" name="vegetarian" value="無" checked><span>無</span></label>
-            <label><input type="radio" name="vegetarian" value="全素"><span>全素</span></label>
-            <label><input type="radio" name="vegetarian" value="蛋奶素"><span>蛋奶素</span></label>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label>素食人數</label>
-          <input type="number" id="vegCount" min="0" max="10" value="0">
-        </div>
-
+        <!-- 7. 兒童椅 -->
         <div class="form-group">
           <label>兒童椅需求</label>
           <input type="number" id="kidChair" min="0" max="5" value="0">
         </div>
+
       </div>
 
+      <!-- 8. 喜帖類型 -->
       <div class="form-group">
-        <label>祝福留言 💬</label>
-        <textarea id="message" placeholder="給新人的祝福話語（選填）"></textarea>
+        <div class="field-label">請選擇您要紙本還是電子喜帖 <span class="required">*</span></div>
+        <div class="radio-group">
+          <label><input type="radio" name="invitationType" value="電子喜帖" required onchange="toggleInvitationFields()"><span>需要，請寄電子喜帖給我</span></label>
+          <label><input type="radio" name="invitationType" value="紙本喜帖" onchange="toggleInvitationFields()"><span>需要，請寄紙本喜帖給我</span></label>
+        </div>
+      </div>
+
+      <!-- 電子喜帖 - Email -->
+      <div id="emailFields" class="conditional">
+        <div class="form-group">
+          <div class="field-label">電子喜帖寄送 Email <span class="required">*</span></div>
+          <div class="field-hint">一起環保愛地球 🌍</div>
+          <input type="email" id="email" placeholder="請填入電子信箱">
+        </div>
+      </div>
+
+      <!-- 紙本喜帖 - 郵遞區號 + 地址 -->
+      <div id="addressFields" class="conditional">
+        <div class="form-group">
+          <div class="field-label">紙本喜帖寄送郵遞區號 <span class="required">*</span></div>
+          <div class="field-hint">備註：需輸入 3+2 郵遞區號 <a class="zip-link" href="https://www.post.gov.tw/post/internet/Postal/index.jsp?ID=208" target="_blank">(3+2郵遞區號查詢)</a></div>
+          <input type="text" id="zipCode" placeholder="例如：32544">
+        </div>
+        <div class="form-group">
+          <div class="field-label">紙本喜帖寄送地址 <span class="required">*</span></div>
+          <input type="text" id="address" placeholder="請填入完整地址">
+        </div>
+      </div>
+
+      <!-- 9. 聯絡電話 -->
+      <div class="form-group">
+        <label>您的聯絡電話 <span class="required">*</span></label>
+        <input type="tel" id="phone" required placeholder="請填入電話號碼">
+      </div>
+
+      <!-- 10. 祝福留言 -->
+      <div class="form-group">
+        <div class="field-label">有什麼話想和我們說嗎 💬</div>
+        <div class="field-hint">如果你有一些祝福的話不好意思當面說，就在這邊留言給我們吧！</div>
+        <textarea id="message" placeholder="請填入文字"></textarea>
       </div>
 
       <button type="submit" class="submit-btn" id="submitBtn">📨 送出回覆</button>
     </form>
   </div>
 
+  <!-- Success -->
   <div id="successSection" class="success-msg">
     <h2>🎊 感謝您的回覆！</h2>
     <p>我們已收到您的回覆<br>期待與您共享這美好的一天 💛</p>
@@ -250,13 +351,30 @@ body {
 // 部署後將你的 Apps Script Web App URL 貼在這裡
 const APPS_SCRIPT_URL = 'YOUR_APPS_SCRIPT_WEB_APP_URL';
 
-function toggleAttendFields() {
+function toggleFields() {
   const attend = document.querySelector('input[name="attend"]:checked');
   const fields = document.getElementById('attendFields');
   if (attend && attend.value === '出席') {
     fields.classList.add('show');
   } else {
     fields.classList.remove('show');
+  }
+}
+
+function toggleInvitationFields() {
+  const type = document.querySelector('input[name="invitationType"]:checked');
+  const emailFields = document.getElementById('emailFields');
+  const addressFields = document.getElementById('addressFields');
+
+  emailFields.classList.remove('show');
+  addressFields.classList.remove('show');
+
+  if (type) {
+    if (type.value === '電子喜帖') {
+      emailFields.classList.add('show');
+    } else if (type.value === '紙本喜帖') {
+      addressFields.classList.add('show');
+    }
   }
 }
 
@@ -268,16 +386,23 @@ async function submitForm(e) {
 
   const attend = document.querySelector('input[name="attend"]:checked').value;
   const side = document.querySelector('input[name="side"]:checked').value;
-  const vegetarian = document.querySelector('input[name="vegetarian"]:checked');
+  const invitationType = document.querySelector('input[name="invitationType"]:checked');
+  const meal = document.querySelector('input[name="meal"]:checked');
+  const drink = document.querySelector('input[name="drink"]:checked');
 
   const data = {
     name: document.getElementById('name').value.trim(),
     side: side,
     attend: attend,
     guests: attend === '出席' ? (document.getElementById('guests').value || '1') : '0',
-    vegetarian: attend === '出席' && vegetarian ? vegetarian.value : '無',
-    vegCount: attend === '出席' ? (document.getElementById('vegCount').value || '0') : '0',
+    meal: attend === '出席' && meal ? meal.value : '',
+    drink: attend === '出席' && drink ? drink.value : '',
     kidChair: attend === '出席' ? (document.getElementById('kidChair').value || '0') : '0',
+    invitationType: invitationType ? invitationType.value : '',
+    email: document.getElementById('email').value.trim(),
+    zipCode: document.getElementById('zipCode').value.trim(),
+    address: document.getElementById('address').value.trim(),
+    phone: document.getElementById('phone').value.trim(),
     message: document.getElementById('message').value.trim()
   };
 
