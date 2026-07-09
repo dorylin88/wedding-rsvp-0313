@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vincent & Dory Wedding RSVP</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -79,19 +79,36 @@ body {
   letter-spacing: 4px;
   margin-bottom: 8px;
 }
-.hero .cn-names {
+.names-pair {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+.name-col {
+  text-align: center;
+}
+.name-col .name-en {
+  font-family: 'Alex Brush', cursive;
+  font-size: 3.4em;
+  font-weight: 400;
+  color: var(--text);
+  letter-spacing: 1px;
+}
+.name-col .name-cn {
   font-family: 'Noto Sans TC', sans-serif;
-  font-size: 0.95em;
+  font-size: 1.1em;
   font-weight: 300;
   color: var(--text-light);
-  letter-spacing: 6px;
-  margin-bottom: 20px;
+  letter-spacing: 4px;
+  margin-top: 4px;
 }
-.hero .divider {
-  width: 60px;
-  height: 1px;
-  background: var(--green-dark);
-  margin: 0 auto 20px;
+.name-amp {
+  font-family: 'Alex Brush', cursive;
+  font-size: 2.2em;
+  font-weight: 400;
+  color: var(--pink-mid);
 }
 .hero .countdown {
   font-family: 'Cormorant Garamond', serif;
@@ -595,9 +612,11 @@ a.map-link:hover {
 <!-- Hero -->
 <section class="hero" id="hero">
   <div class="subtitle">We're Getting Married</div>
-  <h1>Vincent & Dory</h1>
-  <div class="cn-names">古孟治 / 林靖</div>
-  <div class="divider"></div>
+  <div class="names-pair">
+    <div class="name-col"><div class="name-en">Vincent</div><div class="name-cn">古孟治</div></div>
+    <div class="name-amp">&</div>
+    <div class="name-col"><div class="name-en">Dory</div><div class="name-cn">林靖</div></div>
+  </div>
   <div class="countdown" id="countdown"></div>
   <div class="intro">
     親愛的家人朋友們：<br>
