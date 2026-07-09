@@ -77,6 +77,14 @@ body {
   font-weight: 300;
   color: var(--text);
   letter-spacing: 4px;
+  margin-bottom: 8px;
+}
+.hero .cn-names {
+  font-family: 'Noto Sans TC', sans-serif;
+  font-size: 0.95em;
+  font-weight: 300;
+  color: var(--text-light);
+  letter-spacing: 6px;
   margin-bottom: 20px;
 }
 .hero .divider {
@@ -451,6 +459,18 @@ a.map-link:hover {
   padding: 20px;
   margin-bottom: 14px;
 }
+.guest-card:nth-child(even) {
+  background: var(--pink-light);
+  border-color: var(--pink);
+}
+.guest-card:nth-child(even) .mini-radio-group label:has(input:checked) {
+  border-color: var(--pink-mid);
+  background: linear-gradient(135deg, var(--pink-light), var(--pink));
+}
+.guest-card:nth-child(even) .mini-radio-group input[type="radio"]:checked {
+  border-color: var(--pink-mid);
+  background: var(--pink-mid);
+}
 .guest-card .guest-title {
   font-size: 0.82em;
   font-weight: 500;
@@ -576,6 +596,7 @@ a.map-link:hover {
 <section class="hero" id="hero">
   <div class="subtitle">We're Getting Married</div>
   <h1>Vincent & Dory</h1>
+  <div class="cn-names">古孟治 / 林靖</div>
   <div class="divider"></div>
   <div class="countdown" id="countdown"></div>
   <div class="intro">
