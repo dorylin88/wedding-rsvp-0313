@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vincent & Dory Wedding RSVP</title>
-<link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:wght@300;400;500;600&family=Dancing+Script:wght@400;500;600&family=Noto+Sans+TC:wght@300;400;500&family=Parisienne&display=swap" rel="stylesheet">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -158,6 +158,10 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  margin-left: -1.5px;
+}
+.info-block:first-child {
+  margin-left: 0;
 }
 .info-block:first-child { border-radius: 12px 0 0 12px; }
 .info-block:last-child { border-radius: 0 12px 12px 0; }
@@ -656,7 +660,7 @@ a.map-link:hover {
     </div>
     <div class="info-title">Timeline</div>
     <div class="info-value timeline-list">
-      <div class="tl-entry"><div class="tl-time">10:00</div><div class="tl-desc">迎賓簽到 <span class="tl-en">Welcome Candy Bar</span></div></div>
+      <div class="tl-entry"><div class="tl-time">10:30</div><div class="tl-desc">迎賓簽到 <span class="tl-en">Welcome Candy Bar</span></div></div>
       <div class="tl-entry"><div class="tl-time">11:00</div><div class="tl-desc">戶外證婚 <span class="tl-en">Outdoor Ceremony</span></div></div>
       <div class="tl-entry"><div class="tl-time">11:30</div><div class="tl-desc">交流時光 <span class="tl-en">Cocktail / Photo Time</span></div></div>
       <div class="tl-entry"><div class="tl-time">12:20</div><div class="tl-desc">室內午宴 <span class="tl-en">Luncheon</span></div></div>
@@ -792,8 +796,8 @@ a.map-link:hover {
   </div>
 
   <div id="successSection" class="success-msg">
-    <h2>Thank You</h2>
-    <p>感謝您的回覆<br>期待與您共享這美好的一天<br><br>— Vincent & Dory —</p>
+    <h2 style="font-family:'Parisienne',cursive;font-size:3em;font-weight:400;color:var(--text);">Thank You</h2>
+    <p>感謝您的回覆<br>期待與您共享這美好的一天<br><br><span style="font-family:'Parisienne',cursive;font-size:1.5em;color:var(--text-light);">Vincent & Dory</span></p>
   </div>
 </section>
 
@@ -802,7 +806,7 @@ a.map-link:hover {
 </div>
 
 <script>
-const APPS_SCRIPT_URL = 'YOUR_APPS_SCRIPT_WEB_APP_URL';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxCVO9Dl8wflgMeWNuLWUuEVQpzm3F1uitdeAxJcbkNEy1vxnENA2LLKFmLV3TQGlc/exec';
 
 function toggleFields() {
   const attend = document.querySelector('input[name="attend"]:checked');
@@ -838,7 +842,7 @@ function renderGuestCards() {
         <div class="guest-title">${label}</div>
         <div class="guest-row">
           <span class="row-label">姓名</span>
-          <input type="text" id="guestName_${i}" placeholder="請輸入姓名" required>
+          <input type="text" id="guestName_${i}" placeholder="請輸入姓名">
         </div>
         <div class="guest-row">
           <span class="row-label">主餐</span>
