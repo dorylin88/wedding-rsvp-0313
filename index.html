@@ -142,7 +142,7 @@ body {
   display: flex;
   justify-content: center;
   gap: 0;
-  max-width: 700px;
+  max-width: 820px;
   margin: 0 auto;
   flex-wrap: wrap;
   align-items: stretch;
@@ -184,10 +184,11 @@ body {
   margin-bottom: 10px;
 }
 .info-block .info-value {
-  font-size: 0.88em;
+  font-size: 0.92em;
   color: var(--text-light);
   line-height: 1.6;
-  font-family: 'Cormorant Garamond', 'Noto Sans TC', serif;
+  font-family: 'Noto Sans TC', sans-serif;
+  font-weight: 400;
   letter-spacing: 1px;
 }
 
@@ -196,22 +197,30 @@ body {
   text-align: left;
 }
 .tl-entry {
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 .tl-entry:last-child {
   margin-bottom: 0;
 }
 .tl-entry .tl-time {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.15em;
-  font-weight: 400;
-  letter-spacing: 3px;
-  color: var(--text);
+  font-family: 'Noto Sans TC', sans-serif;
+  font-size: 1.05em;
+  font-weight: 500;
+  letter-spacing: 2px;
+  color: var(--text-light);
 }
 .tl-entry .tl-desc {
-  font-size: 0.85em;
+  font-size: 0.82em;
   color: var(--text-light);
   margin-top: 2px;
+  letter-spacing: 1px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+.tl-entry .tl-desc .tl-en {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1em;
+  font-style: italic;
   letter-spacing: 1px;
 }
 .info-block .time-line {
@@ -629,7 +638,7 @@ a.map-link:hover {
 </section>
 
 <!-- Info -->
-<section id="details" style="max-width:700px;margin:0 auto 50px;padding:0 20px;">
+<section id="details" style="max-width:820px;margin:0 auto 50px;padding:0 20px;">
   <div class="section-title" style="margin-bottom:20px;">
     <h2 style="text-transform:uppercase;letter-spacing:4px;font-size:1.2em;">Wedding Details</h2>
   </div>
@@ -647,9 +656,10 @@ a.map-link:hover {
     </div>
     <div class="info-title">Timeline</div>
     <div class="info-value timeline-list">
-      <div class="tl-entry"><div class="tl-time">10:30</div><div class="tl-desc">迎賓簽到 Candy Bar</div></div>
-      <div class="tl-entry"><div class="tl-time">11:00</div><div class="tl-desc">戶外證婚</div></div>
-      <div class="tl-entry"><div class="tl-time">12:00</div><div class="tl-desc">室內午宴</div></div>
+      <div class="tl-entry"><div class="tl-time">10:00</div><div class="tl-desc">迎賓簽到 <span class="tl-en">Welcome Candy Bar</span></div></div>
+      <div class="tl-entry"><div class="tl-time">11:00</div><div class="tl-desc">戶外證婚 <span class="tl-en">Outdoor Ceremony</span></div></div>
+      <div class="tl-entry"><div class="tl-time">11:30</div><div class="tl-desc">交流時光 <span class="tl-en">Cocktail / Photo Time</span></div></div>
+      <div class="tl-entry"><div class="tl-time">12:20</div><div class="tl-desc">室內午宴 <span class="tl-en">Luncheon</span></div></div>
     </div>
   </div>
   <div class="info-block">
@@ -691,7 +701,7 @@ a.map-link:hover {
         <div class="field-hint">無法前來的朋友請不要有壓力，我們會感受到你們祝福的。</div>
         <div class="radio-group">
           <label><input type="radio" name="attend" value="出席" required onchange="toggleFields()"><span>出席，絕對到場！</span></label>
-          <label><input type="radio" name="attend" value="無法出席" onchange="toggleFields()"><span>無法出席，祝你們幸福美滿！</span></label>
+          <label><input type="radio" name="attend" value="無法出席" onchange="toggleFields()"><span>無法出席，誠心獻上祝福</span></label>
           <label><input type="radio" name="attend" value="尚未確定" onchange="toggleFields()"><span>尚未確定</span></label>
         </div>
       </div>
@@ -707,30 +717,33 @@ a.map-link:hover {
         </div>
 
         <div class="form-group">
-          <div class="field-label">出席人數（含本人）<span class="required">*</span></div>
-          <div class="field-hint">填寫人數後，下方會出現每位賓客的主餐與飲品選擇</div>
-          <select id="guests" onchange="renderGuestCards()">
-            <option value="1">1 人</option>
-            <option value="2">2 人</option>
-            <option value="3">3 人</option>
-            <option value="4">4 人</option>
-            <option value="5">5 人</option>
-          </select>
+          <div class="field-label">請填寫出席人數</div>
+          <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:8px;">
+            <div style="flex:1;min-width:140px;">
+              <div class="field-hint" style="margin-bottom:6px;">需用餐人數（含本人）<span class="required">*</span></div>
+              <select id="guests" onchange="renderGuestCards()">
+                <option value="1">1 位</option>
+                <option value="2">2 位</option>
+                <option value="3">3 位</option>
+                <option value="4">4 位</option>
+                <option value="5">5 位</option>
+                <option value="6">6 位</option>
+              </select>
+            </div>
+            <div style="flex:1;min-width:140px;">
+              <div class="field-hint" style="margin-bottom:6px;">需兒童座椅幼兒</div>
+              <select id="kidChair">
+                <option value="0">0 位</option>
+                <option value="1">1 位</option>
+                <option value="2">2 位</option>
+                <option value="3">3 位</option>
+              </select>
+            </div>
+          </div>
+          <div class="field-hint" style="margin-top:8px;">※ 需兒童座椅的幼兒無須選擇主餐</div>
         </div>
 
         <div id="guestCardsContainer"></div>
-
-        <div class="form-group">
-          <div class="field-label">兒童椅需求</div>
-          <select id="kidChair">
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select>
-        </div>
 
       </div>
 
@@ -739,6 +752,7 @@ a.map-link:hover {
         <div class="radio-group">
           <label><input type="radio" name="invitationType" value="電子喜帖" required onchange="toggleInvitationFields()"><span>電子喜帖</span></label>
           <label><input type="radio" name="invitationType" value="紙本喜帖" onchange="toggleInvitationFields()"><span>紙本喜帖</span></label>
+          <label><input type="radio" name="invitationType" value="不需要" onchange="toggleInvitationFields()"><span>不需要，已熟悉婚禮資訊</span></label>
         </div>
       </div>
 
@@ -767,7 +781,7 @@ a.map-link:hover {
       </div>
 
       <div class="form-group">
-        <div class="field-label">有什麼話想和我們說嗎 💬</div>
+        <div class="field-label">有什麼話想和我們說嗎</div>
         <div class="field-hint">如果你有一些祝福的話不好意思當面說，就在這邊留言給我們吧！</div>
         <textarea id="message" placeholder="給新人的祝福"></textarea>
       </div>
@@ -835,11 +849,14 @@ function renderGuestCards() {
           </div>
         </div>
         <div class="guest-row">
-          <span class="row-label">飲品</span>
-          <div class="mini-radio-group">
-            <label><input type="radio" name="guestDrink_${i}" value="酒精飲料" checked><span>酒精飲料</span></label>
-            <label><input type="radio" name="guestDrink_${i}" value="無酒精飲料"><span>無酒精飲料</span></label>
-            <label><input type="radio" name="guestDrink_${i}" value="都可以"><span>都可以</span></label>
+          <span class="row-label">酒水</span>
+          <div>
+            <div class="mini-radio-group">
+              <label><input type="radio" name="guestDrink_${i}" value="會飲用" checked><span>會飲用酒類</span></label>
+              <label><input type="radio" name="guestDrink_${i}" value="不飲用"><span>不飲用酒類</span></label>
+              <label><input type="radio" name="guestDrink_${i}" value="當天視情況"><span>當天視情況</span></label>
+            </div>
+            <div style="font-size:0.7em;color:var(--text-light);margin-top:5px;">※ 為提前準備酒水數量，請協助填寫</div>
           </div>
         </div>
       </div>`;
@@ -881,6 +898,7 @@ async function submitForm(e) {
     session: attend === '出席' && session ? session.value : '',
     guests: attend === '出席' ? (document.getElementById('guests').value || '1') : '0',
     guestDetails: attend === '出席' ? collectGuestData() : [],
+    drinkPref: attend === '出席' ? (document.querySelector('input[name="drinkPref"]:checked') ? document.querySelector('input[name="drinkPref"]:checked').value : '') : '',
     kidChair: attend === '出席' ? (document.getElementById('kidChair').value || '0') : '0',
     invitationType: invitationType ? invitationType.value : '',
     email: document.getElementById('email').value.trim(),
