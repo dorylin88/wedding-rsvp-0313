@@ -61,7 +61,7 @@ body {
 .hero {
   text-align: center;
   padding: 100px 20px 60px;
-  background: linear-gradient(180deg, var(--pink-light) 0%, var(--green-light) 50%, var(--white) 100%);
+  background: linear-gradient(180deg, var(--pink-light) 0%, var(--green-light) 50%, transparent 100%);
 }
 .hero .subtitle {
   font-family: 'Cormorant Garamond', serif;
@@ -208,13 +208,13 @@ body {
 }
 .tl-entry .tl-time {
   font-family: 'Noto Sans TC', sans-serif;
-  font-size: 1.05em;
+  font-size: 0.92em;
   font-weight: 500;
   letter-spacing: 2px;
   color: var(--text-light);
 }
 .tl-entry .tl-desc {
-  font-size: 0.82em;
+  font-size: 0.92em;
   color: var(--text-light);
   margin-top: 2px;
   letter-spacing: 1px;
@@ -222,10 +222,11 @@ body {
   white-space: nowrap;
 }
 .tl-entry .tl-desc .tl-en {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.1em;
-  font-style: italic;
+  font-family: 'Noto Sans TC', sans-serif;
+  font-size: 1em;
+  font-style: normal;
   letter-spacing: 1px;
+  text-transform: none;
 }
 .info-block .time-line {
   display: block;
@@ -511,7 +512,7 @@ a.map-link:hover {
 .guest-card .guest-row {
   display: flex;
   gap: 10px;
-  align-items: center;
+  align-items: flex-start;
   flex-wrap: wrap;
   margin-bottom: 12px;
 }
@@ -520,6 +521,9 @@ a.map-link:hover {
   font-size: 0.8em;
   color: var(--text-light);
   min-width: 42px;
+  width: 42px;
+  flex-shrink: 0;
+  padding-top: 8px;
 }
 .guest-card input[type="text"] {
   flex: 1;
@@ -642,7 +646,7 @@ a.map-link:hover {
 </section>
 
 <!-- Info -->
-<section id="details" style="max-width:820px;margin:0 auto 50px;padding:0 20px;">
+<section id="details" style="max-width:820px;margin:0 auto 50px;padding:0 20px;background:transparent;">
   <div class="section-title" style="margin-bottom:20px;">
     <h2 style="text-transform:uppercase;letter-spacing:4px;font-size:1.2em;">Wedding Details</h2>
   </div>
@@ -742,9 +746,9 @@ a.map-link:hover {
                 <option value="2">2 位</option>
                 <option value="3">3 位</option>
               </select>
+              <div class="field-hint" style="margin-top:6px;">※ 選擇兒童座椅的幼兒無須選擇主餐</div>
             </div>
           </div>
-          <div class="field-hint" style="margin-top:8px;">※ 需兒童座椅的幼兒無須選擇主餐</div>
         </div>
 
         <div id="guestCardsContainer"></div>
@@ -796,8 +800,9 @@ a.map-link:hover {
   </div>
 
   <div id="successSection" class="success-msg">
-    <h2 style="font-family:'Parisienne',cursive;font-size:3em;font-weight:400;color:var(--text);">Thank You</h2>
-    <p>感謝您的回覆<br>期待與您共享這美好的一天<br><br><span style="font-family:'Parisienne',cursive;font-size:1.5em;color:var(--text-light);">Vincent & Dory</span></p>
+    <h2 style="font-family:'Parisienne',cursive;font-size:3em;font-weight:400;background:linear-gradient(135deg, var(--pink-mid), var(--green-dark));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Thank You</h2>
+    <p style="background:linear-gradient(135deg, var(--pink-mid), var(--green-dark));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">感謝您的回覆<br>期待與您共享這美好的一天</p>
+    <p style="margin-top:20px;"><span style="font-family:'Parisienne',cursive;font-size:1.5em;background:linear-gradient(135deg, var(--pink-mid), var(--green-dark));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Vincent & Dory</span></p>
   </div>
 </section>
 
@@ -886,13 +891,57 @@ function collectGuestData() {
 
 async function submitForm(e) {
   e.preventDefault();
+
+  const attend = document.querySelector('input[name="attend"]:checked').value;
+  const invitationType = document.querySelector('input[name="invitationType"]:checked');
+
+  // 驗證：出席時賓客姓名不能為空
+  if (attend === '出席') {
+    const count = parseInt(document.getElementById('guests').value) || 1;
+    for (let i = 0; i < count; i++) {
+      const gName = document.getElementById(`guestName_${i}`);
+      if (gName && !gName.value.trim()) {
+        alert('請填寫所有賓客姓名');
+        gName.focus();
+        return;
+      }
+    }
+  }
+
+  // 驗證：電子喜帖需填 email
+  if (invitationType && invitationType.value === '電子喜帖') {
+    const email = document.getElementById('email').value.trim();
+    if (!email || !email.includes('@')) {
+      alert('請填寫正確的 Email 格式');
+      document.getElementById('email').focus();
+      return;
+    }
+  }
+
+  // 驗證：紙本喜帖需填地址和郵遞區號
+  if (invitationType && invitationType.value === '紙本喜帖') {
+    const zip = document.getElementById('zipCode').value.trim();
+    const addr = document.getElementById('address').value.trim();
+    if (!zip) {
+      alert('請填寫郵遞區號');
+      document.getElementById('zipCode').focus();
+      return;
+    }
+    if (!addr) {
+      alert('請填寫寄送地址');
+      document.getElementById('address').focus();
+      return;
+    }
+  }
+
+  // 確認彈窗
+  if (!confirm('確定要送出回覆嗎？')) return;
+
   const btn = document.getElementById('submitBtn');
   btn.disabled = true;
   btn.textContent = '送出中...';
 
-  const attend = document.querySelector('input[name="attend"]:checked').value;
   const side = document.querySelector('input[name="side"]:checked').value;
-  const invitationType = document.querySelector('input[name="invitationType"]:checked');
   const session = document.querySelector('input[name="session"]:checked');
 
   const data = {
@@ -921,6 +970,7 @@ async function submitForm(e) {
     });
     document.getElementById('formSection').style.display = 'none';
     document.getElementById('successSection').style.display = 'block';
+    document.querySelector('.form-section').style.background = 'transparent';
   } catch (err) {
     alert('送出失敗，請稍後再試或聯繫新人 🙏');
     btn.disabled = false;
