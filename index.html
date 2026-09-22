@@ -514,7 +514,7 @@ a.map-link:hover {
   gap: 10px;
   align-items: flex-start;
   flex-wrap: wrap;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 .guest-card .guest-row:last-child { margin-bottom: 0; }
 .guest-card .row-label {
@@ -591,20 +591,39 @@ a.map-link:hover {
   color: var(--green-dark);
   font-weight: 400;
 }
-/* 主餐選項：直式排列，文字較長時更整齊 */
+/* 主餐這一列：標籤在上，選項對齊姓名輸入框左緣 */
+.guest-card .meal-row {
+  flex-direction: column;
+  gap: 10px;
+}
+.guest-card .meal-label {
+  width: auto;
+  min-width: 0;
+  padding-top: 0;
+}
+/* 主餐選項：直式排列，縮排對齊姓名輸入框左緣（42px 標籤 + 10px 間距） */
 .guest-card .meal-radio-group {
   display: flex;
   flex-direction: column;
   gap: 8px;
   width: 100%;
+  padding-left: 52px;
+}
+/* 統一所有備註文字的樣式與行距 */
+.guest-card .guest-note {
+  font-size: 0.72em;
+  color: var(--text-light);
+  line-height: 1.9;
+  text-align: left;
+  padding-left: 0;
 }
 .guest-card .meal-radio-group label {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   width: 100%;
-  padding: 12px 22px;
-  border-radius: 40px;
+  padding: 8px 18px;
+  border-radius: 30px;
 }
 .guest-card .meal-radio-group input[type="radio"] {
   flex-shrink: 0;
@@ -615,7 +634,7 @@ a.map-link:hover {
   line-height: 1.35;
 }
 .guest-card .meal-radio-group .meal-cn {
-  font-size: 0.9em;
+  font-size: 0.85em;
   color: var(--text);
 }
 .guest-card .meal-radio-group label:has(input:checked) .meal-cn {
@@ -887,12 +906,13 @@ function renderGuestCards() {
           <span class="row-label">姓名</span>
           <input type="text" id="guestName_${i}" placeholder="請輸入姓名">
         </div>
-        <div class="guest-row">
-          <span class="row-label">主餐</span>
+        <div class="guest-row meal-row">
+          <span class="row-label meal-label">主餐</span>
           <div class="mini-radio-group meal-radio-group">
             <label><input type="radio" name="guestMeal_${i}" value="松露奶油干貝鮭魚燉飯" checked><span class="meal-text"><span class="meal-cn">松露奶油干貝鮭魚燉飯</span><span class="meal-en">Risotto with salmon and scallops in truffle cream sauce</span></span></label>
-            <label><input type="radio" name="guestMeal_${i}" value="自製經典手拍番茄肉丸義大利麵"><span class="meal-text"><span class="meal-cn">自製經典手拍番茄肉丸義大利麵</span><span class="meal-en">Classic spaghetti &amp; meatballs</span></span></label>
+            <label><input type="radio" name="guestMeal_${i}" value="自製經典手拍番茄肉丸義大利麵"><span class="meal-text"><span class="meal-cn">自製經典手拍番茄肉丸義大利麵（內含牛肉豬肉）</span><span class="meal-en">Classic spaghetti &amp; meatballs</span></span></label>
             <label><input type="radio" name="guestMeal_${i}" value="清炒時蔬寬扁麵（素食）"><span class="meal-text"><span class="meal-cn">清炒時蔬寬扁麵（素食）</span><span class="meal-en">Linguine with seasonal vegetables</span></span></label>
+            <div class="guest-note" style="margin-top:8px;">※ 另有其他自助吧可供取用（輕食／Pizza／炸物拼盤／各式甜點…）</div>
           </div>
         </div>
         <div class="guest-row">
@@ -903,8 +923,8 @@ function renderGuestCards() {
               <label><input type="radio" name="guestDrink_${i}" value="不飲用"><span>不飲用酒類</span></label>
               <label><input type="radio" name="guestDrink_${i}" value="當天視情況"><span>當天視情況</span></label>
             </div>
-            <div style="font-size:0.7em;color:var(--text-light);margin-top:5px;">※ 為提前準備酒水數量，請協助填寫</div>
-            <div style="font-size:0.7em;color:var(--text-light);margin-top:2px;">※ 當天備有無酒精飲品</div>
+            <div class="guest-note" style="margin-top:8px;">※ 為提前準備酒水數量，請協助填寫</div>
+            <div class="guest-note">※ 當天備有無酒精飲品</div>
           </div>
         </div>
       </div>`;
