@@ -591,6 +591,45 @@ a.map-link:hover {
   color: var(--green-dark);
   font-weight: 400;
 }
+/* 主餐選項：直式排列，文字較長時更整齊 */
+.guest-card .meal-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+.guest-card .meal-radio-group label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 12px 22px;
+  border-radius: 40px;
+}
+.guest-card .meal-radio-group input[type="radio"] {
+  flex-shrink: 0;
+}
+.guest-card .meal-radio-group .meal-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.35;
+}
+.guest-card .meal-radio-group .meal-cn {
+  font-size: 0.9em;
+  color: var(--text);
+}
+.guest-card .meal-radio-group label:has(input:checked) .meal-cn {
+  color: var(--green-dark);
+  font-weight: 400;
+}
+.guest-card .meal-radio-group .meal-en {
+  font-size: 0.76em;
+  color: var(--text-light);
+  font-weight: 300;
+  letter-spacing: 0.2px;
+  margin-top: 2px;
+  font-style: italic;
+}
 
 /* Footer */
 .footer {
@@ -638,9 +677,9 @@ a.map-link:hover {
   <div class="intro">
     親愛的家人朋友們：<br>
     我們的婚禮就定在 2027/3/13 (六)<br>
-    誠摯邀請你與我們共同見證分享這一幸福時刻。<br><br>
-    為了能早早安排所有細節，讓大家玩得開心，我們準備了問券。<br>
-    若剛好有空，期待與你共度這段溫馨而難忘的時光<br>
+    誠摯邀請你與我們共同見證分享這一幸福時刻<br><br>
+    為了能早早安排所有細節，讓大家玩得開心，我們準備了問券<br>
+    若剛好有空，期待與您共度這段溫馨而難忘的時光<br>
     若有事不能到場，您的祝福就是我們最好的禮物
   </div>
 </section>
@@ -664,10 +703,10 @@ a.map-link:hover {
     </div>
     <div class="info-title">Timeline</div>
     <div class="info-value timeline-list">
-      <div class="tl-entry"><div class="tl-time">10:30</div><div class="tl-desc">迎賓簽到 <span class="tl-en">Welcome Candy Bar</span></div></div>
-      <div class="tl-entry"><div class="tl-time">11:00</div><div class="tl-desc">戶外證婚 <span class="tl-en">Outdoor Ceremony</span></div></div>
-      <div class="tl-entry"><div class="tl-time">11:30</div><div class="tl-desc">交流時光 <span class="tl-en">Cocktail / Photo Time</span></div></div>
-      <div class="tl-entry"><div class="tl-time">12:20</div><div class="tl-desc">室內午宴 <span class="tl-en">Luncheon</span></div></div>
+      <div class="tl-entry"><div class="tl-time">10:40</div><div class="tl-desc">迎賓簽到 <span class="tl-en">Welcome Candy Bar</span></div></div>
+      <div class="tl-entry"><div class="tl-time">11:10</div><div class="tl-desc">草坪證婚 <span class="tl-en">Ceremony</span></div></div>
+      <div class="tl-entry"><div class="tl-time">11:40</div><div class="tl-desc">交流時光 <span class="tl-en">Cocktail / Photo Time</span></div></div>
+      <div class="tl-entry"><div class="tl-time">12:10</div><div class="tl-desc">午宴開席 <span class="tl-en">Lunch</span></div></div>
     </div>
   </div>
   <div class="info-block">
@@ -760,7 +799,6 @@ a.map-link:hover {
         <div class="radio-group">
           <label><input type="radio" name="invitationType" value="電子喜帖" required onchange="toggleInvitationFields()"><span>電子喜帖</span></label>
           <label><input type="radio" name="invitationType" value="紙本喜帖" onchange="toggleInvitationFields()"><span>紙本喜帖</span></label>
-          <label><input type="radio" name="invitationType" value="不需要" onchange="toggleInvitationFields()"><span>不需要，已熟悉婚禮資訊</span></label>
         </div>
       </div>
 
@@ -851,10 +889,10 @@ function renderGuestCards() {
         </div>
         <div class="guest-row">
           <span class="row-label">主餐</span>
-          <div class="mini-radio-group">
-            <label><input type="radio" name="guestMeal_${i}" value="手工慢燉番茄肉丸義大利麵" checked><span>番茄肉丸義大利麵</span></label>
-            <label><input type="radio" name="guestMeal_${i}" value="松露奶油雞腿燉飯"><span>松露奶油雞腿燉飯</span></label>
-            <label><input type="radio" name="guestMeal_${i}" value="素食餐點"><span>素食餐點</span></label>
+          <div class="mini-radio-group meal-radio-group">
+            <label><input type="radio" name="guestMeal_${i}" value="松露奶油干貝鮭魚燉飯" checked><span class="meal-text"><span class="meal-cn">松露奶油干貝鮭魚燉飯</span><span class="meal-en">Risotto with salmon and scallops in truffle cream sauce</span></span></label>
+            <label><input type="radio" name="guestMeal_${i}" value="自製經典手拍番茄肉丸義大利麵"><span class="meal-text"><span class="meal-cn">自製經典手拍番茄肉丸義大利麵</span><span class="meal-en">Classic spaghetti &amp; meatballs</span></span></label>
+            <label><input type="radio" name="guestMeal_${i}" value="清炒時蔬寬扁麵（素食）"><span class="meal-text"><span class="meal-cn">清炒時蔬寬扁麵（素食）</span><span class="meal-en">Linguine with seasonal vegetables</span></span></label>
           </div>
         </div>
         <div class="guest-row">
@@ -866,6 +904,7 @@ function renderGuestCards() {
               <label><input type="radio" name="guestDrink_${i}" value="當天視情況"><span>當天視情況</span></label>
             </div>
             <div style="font-size:0.7em;color:var(--text-light);margin-top:5px;">※ 為提前準備酒水數量，請協助填寫</div>
+            <div style="font-size:0.7em;color:var(--text-light);margin-top:2px;">※ 當天備有無酒精飲品</div>
           </div>
         </div>
       </div>`;
